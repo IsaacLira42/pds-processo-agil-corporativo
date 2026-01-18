@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-br" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAP | Processo Acadêmico Baseado no Lean</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        </script>
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background-color: #020617;
+                color: #f8fafc;
+                overflow-x: hidden;
+            }
+            .glass {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .gradient-text {
+                background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: gradient 3s linear infinite;
+            }
+            @keyframes gradient {
+                to {
+                    background-position: 200% center;
+                }
+            }
+            .mermaid {
+                background: transparent !important;
+                filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
+            }
+            .blob {
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                background: rgba(56, 189, 248, 0.1);
+                filter: blur(80px);
+                border-radius: 50%;
+                z-index: -1;
+                animation: float 10s infinite alternate;
+            }
+            @keyframes float {
+                from {
+                    transform: translate(0, 0);
+                }
+                to {
+                    transform: translate(100px, 50px);
+                }
+            }
+            .custom-cursor {
+                width: 20px;
+                height: 20px;
+                border: 2px solid #38bdf8;
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.1s ease;
+            }
+        </style>
+    </head>
+    <body class="font-sans selection:bg-sky-500/30">
+        <div class="custom-cursor hidden md:block"></div>
+        <div class="blob top-20 left-10"></div>
+        <div
+            class="blob bottom-20 right-10"
+            style="background: rgba(129, 140, 248, 0.1)"
+        ></div>
+
+        <nav
+            class="fixed w-full z-50 glass py-4 px-8 flex justify-between items-center transition-all duration-300"
+            id="navbar"
+        >
+            <h1 class="text-xl font-bold gradient-text tracking-tighter">
+                LAP: Lean Academic Pipeline
+            </h1>
+            <div
+                class="hidden md:flex gap-8 text-xs uppercase tracking-widest font-bold"
+            >
+                <a href="#fluxo" class="hover:text-sky-400 transition-colors"
+                    >Diagrama</a
+                >
+                <a
+                    href="#atividades"
+                    class="hover:text-sky-400 transition-colors"
+                    >Atividades</a
+                >
+                <a href="#papeis" class="hover:text-sky-400 transition-colors"
+                    >Papéis</a
+                >
+                <a href="#praticas" class="hover:text-sky-400 transition-colors"
+                    >Práticas</a
+                >
+            </div>
+        </nav>
+
+        <section
+            class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden"
+        >
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <span
+                    class="inline-block px-4 py-1 mb-6 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-bold uppercase tracking-widest"
+                    >PDS Corporativo @ 2026</span
+                >
+                <h2
+                    class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight tracking-tight"
+                >
+                    Processo Acadêmico<br /><span class="gradient-text"
+                        >Baseado no LAP</span
+                    >
+                </h2>
+                <p class="max-w-2xl text-slate-400 text-lg mb-10 mx-auto">
+                    O <b>Lean Academic Pipeline (LAP)</b> é utilizado como
+                    abordagem conceitual para estruturar um
+                    <b>processo acadêmico ágil</b>, integrando práticas de
+                    Scrum, Kanban, XP e DevOps com foco em automação, qualidade
+                    técnica e entrega contínua de valor educacional.
+                </p>
+                <div class="flex gap-4 justify-center">
+                    <a
+                        href="#fluxo"
+                        class="bg-sky-500 hover:bg-sky-400 text-slate-950 px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-sky-500/20"
+                        >Ver Processo</a
+                    >
+                    <a
+                        href="#praticas"
+                        class="glass px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all"
+                        >Práticas Aplicadas</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section id="fluxo" class="py-32 px-8 max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-4xl font-bold mb-4">
+                    Fluxo do Processo Acadêmico
+                </h3>
+                <p class="text-slate-400 italic">
+                    Pipeline iterativo estruturado a partir do Lean Academic
+                    Pipeline.
+                </p>
+            </div>
+            <div class="glass p-6 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="mermaid mb-6 flex justify-center overflow-x-auto">
+                    graph TD 
+                        A((Início da Interação)) --> B[Planning + Kanban] 
+                        B --> C{Desenvolvimento} 
+                        C --> D[Coding + Pair XP] 
+                        D --> E[CI: Build & Test Automático] 
+                        E -- Falha --> D 
+                        E -- Sucesso --> F[Peer Review] 
+                        F --> G[CD: Deploy Automático] 
+                        G --> H[Sync Orientador] 
+                        H --> A
+                </div>
+                <p class="text-slate-400 text-center italic">
+                    Diagrama de atividades do processo acadêmico
+                </p>
+            </div>
+        </section>
+
+        <section id="atividades" class="py-32 bg-slate-950/50 relative">
+            <div class="max-w-6xl mx-auto px-8">
+                <h3
+                    class="text-4xl font-bold mb-16 text-center"
+                    data-aos="fade-up"
+                >
+                    Atividades do Processo
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div
+                        class="glass p-8 rounded-3xl hover:border-sky-500/50 transition-all duration-500 group"
+                        data-aos="fade-right"
+                    >
+                        <div class="flex items-center gap-4 mb-4">
+                            <span
+                                class="w-10 h-10 flex items-center justify-center rounded-xl bg-sky-500 text-slate-950 font-bold"
+                                >01</span
+                            >
+                            <h4
+                                class="text-xl font-bold group-hover:text-sky-400 transition-colors"
+                            >
+                                Gerência & Planning
+                            </h4>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            <b>Origem: Scrum/Kanban.</b> Reunião semanal de
+                            60min para definir o Backlog. O progresso é gerido
+                            via Kanban (GitHub Projects), permitindo
+                            visibilidade total sem necessidade de
+                            <i>Dailies</i> presenciais.
+                        </p>
+                        <span
+                            class="text-[10px] font-bold tracking-widest text-sky-500/60 uppercase"
+                            >Foco: Organização Assíncrona</span
+                        >
+                    </div>
+                    <div
+                        class="glass p-8 rounded-3xl hover:border-purple-500/50 transition-all duration-500 group"
+                        data-aos="fade-left"
+                    >
+                        <div class="flex items-center gap-4 mb-4">
+                            <span
+                                class="w-10 h-10 flex items-center justify-center rounded-xl bg-purple-500 text-slate-950 font-bold"
+                                >02</span
+                            >
+                            <h4
+                                class="text-xl font-bold group-hover:text-purple-400 transition-colors"
+                            >
+                                Dev & Automação (CI)
+                            </h4>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            <b>Origem: XP/PDS Corporativo.</b> Codificação com
+                            testes automatizados integrados. Cada
+                            <i>push</i> ativa o <b>GitHub Actions</b> para
+                            validar o código, garantindo que a alta carga
+                            horária da equipe não resulte em erros manuais.
+                        </p>
+                        <span
+                            class="text-[10px] font-bold tracking-widest text-purple-500/60 uppercase"
+                            >Foco: Qualidade Técnica</span
+                        >
+                    </div>
+                    <div
+                        class="glass p-8 rounded-3xl hover:border-emerald-500/50 transition-all duration-500 group"
+                        data-aos="fade-right"
+                    >
+                        <div class="flex items-center gap-4 mb-4">
+                            <span
+                                class="w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-500 text-slate-950 font-bold"
+                                >03</span
+                            >
+                            <h4
+                                class="text-xl font-bold group-hover:text-emerald-400 transition-colors"
+                            >
+                                Revisão & Peer Review
+                            </h4>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            <b>Origem: Manifesto Ágil.</b> Prioriza "Indivíduos
+                            e Interações". Nenhuma funcionalidade é aceita sem a
+                            revisão de outro membro da equipe, disseminando
+                            conhecimento de forma didática e gratuita.
+                        </p>
+                        <span
+                            class="text-[10px] font-bold tracking-widest text-emerald-500/60 uppercase"
+                            >Foco: Colaboração Didática</span
+                        >
+                    </div>
+                    <div
+                        class="glass p-8 rounded-3xl hover:border-amber-500/50 transition-all duration-500 group"
+                        data-aos="fade-left"
+                    >
+                        <div class="flex items-center gap-4 mb-4">
+                            <span
+                                class="w-10 h-10 flex items-center justify-center rounded-xl bg-amber-500 text-slate-950 font-bold"
+                                >04</span
+                            >
+                            <h4
+                                class="text-xl font-bold group-hover:text-amber-400 transition-colors"
+                            >
+                                Implantação (CD) & Feedback
+                            </h4>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                            <b>Origem: DevOps/Scrum.</b> O software é publicado
+                            automaticamente (Vercel/Render). O
+                            <b>Orientador (PO)</b> valida o incremento de forma
+                            prática no ambiente de homologação ao fim da semana.
+                        </p>
+                        <span
+                            class="text-[10px] font-bold tracking-widest text-amber-500/60 uppercase"
+                            >Foco: Entrega de Valor</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="papeis" class="py-32 px-8 max-w-6xl mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-16" data-aos="fade-up">
+                Papéis da Equipe - Papéis Adaptados ao Contexto Acadêmico
+            </h3>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="group" data-aos="zoom-in" data-aos-delay="100">
+                    <div
+                        class="w-20 h-20 bg-sky-500/10 border border-sky-500/50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform shadow-lg shadow-sky-500/20"
+                    >
+                        <i
+                            class="fas fa-graduation-cap text-3xl text-sky-400"
+                        ></i>
+                    </div>
+                    <h4
+                        class="text-xl font-bold mb-2 uppercase tracking-tighter"
+                    >
+                        Orientador (PO Acadêmico)
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Responsável pela visão acadêmica, priorização de
+                        requisitos e feedback final.
+                    </p>
+                </div>
+                <div class="group" data-aos="zoom-in" data-aos-delay="200">
+                    <div
+                        class="w-20 h-20 bg-indigo-500/10 border border-indigo-500/50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:-rotate-12 transition-transform shadow-lg shadow-indigo-500/20"
+                    >
+                        <i class="fas fa-bolt text-3xl text-indigo-400"></i>
+                    </div>
+                    <h4
+                        class="text-xl font-bold mb-2 uppercase tracking-tighter"
+                    >
+                        Facilitador (SM Adaptado)
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Estudante responsável por manter o Kanban fluindo e
+                        eliminar gargalos de tempo.
+                    </p>
+                </div>
+                <div class="group" data-aos="zoom-in" data-aos-delay="300">
+                    <div
+                        class="w-20 h-20 bg-emerald-500/10 border border-emerald-500/50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform shadow-lg shadow-emerald-500/20"
+                    >
+                        <i class="fas fa-code text-3xl text-emerald-400"></i>
+                    </div>
+                    <h4
+                        class="text-xl font-bold mb-2 uppercase tracking-tighter"
+                    >
+                        Equipe de Desenvolvimento
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Time responsável pela implementação, testes e automação.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section
+            id="praticas"
+            class="py-32 glass rounded-t-[3rem] border-none relative overflow-hidden"
+        >
+            <div class="max-w-6xl mx-auto px-8 relative">
+                <h3
+                    class="text-4xl font-bold mb-16 text-center"
+                    data-aos="fade-up"
+                >
+                    Práticas Ágeis Aplicadas
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div
+                        class="p-8 border border-white/5 rounded-3xl bg-white/5 text-center group hover:bg-sky-500/10 transition-colors"
+                        data-aos="flip-left"
+                    >
+                        <span
+                            class="text-[10px] text-sky-400 font-black mb-4 block tracking-widest"
+                            >ORIGEM: XP</span
+                        >
+                        <p class="font-bold uppercase tracking-tighter text-lg">
+                            Pair Programming
+                        </p>
+                    </div>
+                    <div
+                        class="p-8 border border-white/5 rounded-3xl bg-white/5 text-center group hover:bg-purple-500/10 transition-colors"
+                        data-aos="flip-left"
+                        data-aos-delay="100"
+                    >
+                        <span
+                            class="text-[10px] text-purple-400 font-black mb-4 block tracking-widest"
+                            >ORIGEM: KANBAN</span
+                        >
+                        <p class="font-bold uppercase tracking-tighter text-lg">
+                            WIP Limit
+                        </p>
+                    </div>
+                    <div
+                        class="p-8 border border-white/5 rounded-3xl bg-white/5 text-center group hover:bg-emerald-500/10 transition-colors"
+                        data-aos="flip-left"
+                        data-aos-delay="200"
+                    >
+                        <span
+                            class="text-[10px] text-emerald-400 font-black mb-4 block tracking-widest"
+                            >ORIGEM: SCRUM</span
+                        >
+                        <p class="font-bold uppercase tracking-tighter text-lg">
+                            Weekly Sync
+                        </p>
+                    </div>
+                    <div
+                        class="p-8 border border-white/5 rounded-3xl bg-white/5 text-center group hover:bg-amber-500/10 transition-colors"
+                        data-aos="flip-left"
+                        data-aos-delay="300"
+                    >
+                        <span
+                            class="text-[10px] text-amber-400 font-black mb-4 block tracking-widest"
+                            >ORIGEM: MANIFESTO</span
+                        >
+                        <p class="font-bold uppercase tracking-tighter text-lg">
+                            Simplicidade
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-20 border-t border-white/5 text-center bg-slate-950">
+            <p class="text-slate-500 text-sm">
+                &copy; 2026 Processo Acadêmico baseado no Lean Academic Pipeline
+                (LAP)
+            </p>
+            <div class="flex gap-4 justify-center mt-6 text-slate-600">
+                <i
+                    class="fab fa-github hover:text-white transition-colors cursor-pointer"
+                ></i>
+                <i
+                    class="fab fa-discord hover:text-white transition-colors cursor-pointer"
+                ></i>
+            </div>
+        </footer>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({ once: true });
+
+            // Firula: Cursor Customizado
+            const cursor = document.querySelector('.custom-cursor');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            // Firula: Navbar mudando no scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-2', 'bg-slate-950/90');
+                } else {
+                    nav.classList.remove('py-2', 'bg-slate-950/90');
+                }
+            });
+
+            // Firula: Efeito Hover nos botões
+            document.querySelectorAll('a').forEach((btn) => {
+                btn.addEventListener(
+                    'mouseover',
+                    () => (cursor.style.transform = 'scale(2.5)'),
+                );
+                btn.addEventListener(
+                    'mouseleave',
+                    () => (cursor.style.transform = 'scale(1)'),
+                );
+            });
+        </script>
+    </body>
+</html>
